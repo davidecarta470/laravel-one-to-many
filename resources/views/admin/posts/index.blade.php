@@ -15,9 +15,14 @@
 
         <li class="d-flex justify-content-between">
           
-          <div>
+          <div style="max-width:70%">
+            <h5>Categoria : 
+             @if ($post->category)
+                  {{$post->category->name}}</h5>
+             @else
+                  -
+            @endif
             <h6>Slug : {{$post->slug}}</h6>
-            <h5>Categoria : {{$post->category->name}}</h5>
              <a href="{{route('admin.posts.show',$post)}}"><h2>Titolo : {{$post->title}}</h2></a> 
              
             <hr>
