@@ -48,7 +48,20 @@
         </li>
         @endforeach
       </ul>
-  
+      <div style="padding:20px 0px;">
+
+        @foreach ($categories as $category)
+          <div style="margin-right:20px;">
+            <a href="">{{$category->name}}</a>
+            @foreach ( $category->posts as $post )
+              <div>
+                - {{$post->title}}
+              
+              </div>
+            @endforeach
+          </div>  
+        @endforeach
+      </div>
     <div>
       {{$posts->links()}}
     </div>
