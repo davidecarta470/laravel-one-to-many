@@ -52,13 +52,18 @@
 
         @foreach ($categories as $category)
           <div style="margin-right:20px;">
-            <a href="">{{$category->name}}</a>
-            @foreach ( $category->posts as $post )
+            {{$category->name}}
+            @forelse (  $category->posts as $post )
+
               <div>
-                - {{$post->title}}
-              
+                - <a href="{{route('admin.posts.show',$post)}}">{{$post->title}}</a>
               </div>
-            @endforeach
+
+            @empty
+              nessun post presente
+            @endforelse 
+              
+           
           </div>  
         @endforeach
       </div>
