@@ -47,7 +47,19 @@
             <p>{{$message}} </p>
           @enderror  
         </div>
-        
+        <select 
+        name="category_id"
+        id="category_id"
+        class="form-control mb-5" >
+          <option selected>Seleziona una categoria</option>
+          @foreach ($categories as $category)
+              
+           <option 
+           @if (  $category->id == old('category_id',$post->category_id)  ) selected @endif
+           value="{{$category->id}}">{{$category->name}}</option>
+          @endforeach
+          
+        </select>
     
      
         <button type="submit" class="btn btn-primary">Submit</button>

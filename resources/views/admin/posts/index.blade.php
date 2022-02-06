@@ -48,20 +48,22 @@
         </li>
         @endforeach
       </ul>
-      <div style="padding:20px 0px;">
 
+      
+      <div style="padding:20px 0px;">
         @foreach ($categories as $category)
           <div style="margin-right:20px;">
             {{$category->name}}
-            @forelse (  $category->posts as $post )
+            
+              @forelse (  $category->posts as $post )
 
-              <div>
-                - <a href="{{route('admin.posts.show',$post)}}">{{$post->title}}</a>
-              </div>
+                <div>
+                  - <a href="{{route('admin.posts.show',$post)}}">{{$post->title}}</a>
+                </div>
 
-            @empty
-              nessun post presente
-            @endforelse 
+              @empty
+                nessun post presente
+              @endforelse 
               
            
           </div>  

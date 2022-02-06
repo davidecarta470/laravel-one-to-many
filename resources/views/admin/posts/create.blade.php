@@ -41,12 +41,24 @@
 
         <div class="form-group">
           <label for="content">Post</label>
-          <textarea class="form-control" class="form-control @error ('content') is-invalid @enderror" name="content" id="content" rows="3"></textarea>
+          <textarea class="form-control" class="form-control @error ('content') is-invalid @enderror" name="content" id="content" rows="3">{{old('content')}}</textarea>
           @error('content') 
             <p>{{$message}} </p>
           @enderror  
         </div>
-        
+        <select 
+        name="category_id"
+        id="category_id"
+        class="form-control mb-5" >
+          <option selected>Seleziona una categoria</option>
+          @foreach ($categories as $category)
+              
+           <option 
+           @if (  $category->id == old('category_id')  ) selected @endif
+           value="{{$category->id}}">{{$category->name}}</option>
+          @endforeach
+          
+        </select>
     
      
         <button type="submit" class="btn btn-primary">Submit</button>
