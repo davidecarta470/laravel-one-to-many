@@ -17,18 +17,29 @@
           
           <div style="max-width:70%">
             <h5>Categoria : 
-             @if ($post->category)
-                  {{$post->category->name}}</h5>
-             @else
-                  -
-            @endif
+              @if ($post->category)
+                  {{$post->category->name}}
+              @else
+                    -
+              @endif
+            </h5>
+            
+            <div>
+              @forelse ($post->tags as $tag)
+                  
+                  <span class="badge bg-primary">{{$tag->name}}</span>
+              @empty
+                  
+              @endforelse
+            </div>
+            
             <h6>Slug : {{$post->slug}}</h6>
              <a href="{{route('admin.posts.show',$post)}}"><h2>Titolo : {{$post->title}}</h2></a> 
-             
+            
             <hr>
           </div>
-          <div>
           
+          <div>
             <div style="display: inline-block">
               <a class="btn btn-success" href="{{route('admin.posts.create',$post)}}">CREATE</a>
             </div>

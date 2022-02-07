@@ -11,6 +11,16 @@
     
     @endif
   </h6>
+  
+  <div>
+    @forelse ($post->tags as $tag)
+        <span class="badge bg-primary">{{$tag->name}}</span>
+    @empty
+        
+    @endforelse
+    </div>
+        
+
   <h3>
     {{$post->title}}
   </h3>
