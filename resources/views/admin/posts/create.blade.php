@@ -28,7 +28,7 @@
             id="title" 
             aria-describedby="emailHelp"
             value="{{old('title')}}"
-           >
+          >
 
           @error('title')
             <p class="form_errors">
@@ -50,7 +50,7 @@
         name="category_id"
         id="category_id"
         class="form-control mb-5" >
-          <option selected>Seleziona una categoria</option>
+          <option value="">Seleziona una categoria</option>
           @foreach ($categories as $category)
               
            <option 
@@ -59,6 +59,23 @@
           @endforeach
           
         </select>
+        <div class="my-3">
+          <h5>Tags</h5>
+          @foreach ($tags as $tag)
+            <span class="d-inline-block mr-4">
+              <input 
+              type="checkbox"
+              name="tags[]"
+              value="{{ $tag->id }}"
+              id="tag{{$loop->iteration}}"
+              @if (in_array($tag->id,old("tags",[])))
+                checked
+              @endif
+              >
+              <label for="tag{{$loop->iteration}}">{{$tag->name}}</label>
+            </span>
+          @endforeach
+        </div>
     
      
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -48,19 +48,39 @@
           @enderror  
         </div>
         <select 
-        name="category_id"
-        id="category_id"
-        class="form-control mb-5" >
-          <option selected>Seleziona una categoria</option>
-          @foreach ($categories as $category)
-              
-           <option 
-           @if (  $category->id == old('category_id',$post->category_id)  ) selected @endif
-           value="{{$category->id}}">{{$category->name}}</option>
+          name="category_id"
+          id="category_id"
+          class="form-control mb-5" >
+            <option value="">Seleziona una categoria</option>
+            @foreach ($categories as $category)
+                
+              <option 
+                @if (  $category->id == old('category_id',$post->category_id)  ) selected @endif
+                value="{{$category->id}}">{{$category->name}}
+              </option>
           @endforeach
           
         </select>
-    
+        <div class="my-3">
+          <h5>Tags</h5>
+          @foreach ($tags as $tag)
+            <span class="d-inline-block mr-4">
+              <input 
+              type="checkbox"
+              name="tags[]"
+              value="{{ $tag->id }}"
+              id="tag{{$loop->iteration}}"
+              @if (!$errors->any() && $post->tags->contains($tag->id))
+              
+              checked
+              @elseif ($errors->any() && in_array($tag->id,old("tags",[])))
+                checked
+              @endif
+              >
+              <label for="tag{{$loop->iteration}}">{{$tag->name}}</label>
+            </span>
+          @endforeach
+        </div>
      
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-danger">reset</button>
